@@ -7,9 +7,9 @@ function App() {
   return (
     <div>
       {/* Componente de listado de tareas */}
-      {/* <TaskListComponent /> */}
+      <TaskListComponent />
       {/* <LoginFormik /> */}
-      <RegisterFormik />
+      {/* <RegisterFormik /> */}
     </div>
   );
 }

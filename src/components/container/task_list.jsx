@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { LEVELS } from "../../models/levels.enum";
 import { Task } from "../../models/task.class";
-import TaskForm from "../pure/forms/taskForm";
+import TaskFormik from "../pure/forms/taskFormik";
 import Loader from "../pure/Loader";
 import TaskComponent from "../pure/task";
 
@@ -102,7 +102,7 @@ const TaskListComponent = () => {
   }
 
   return (
-    <div>
+    <div className="text-center">
       {loading ? (
         <Loader />
       ) : (
@@ -126,7 +126,7 @@ const TaskListComponent = () => {
               )}
             </div>
           </div>
-          <TaskForm
+          <TaskFormik
             colorPriority={colorPriority}
             colorsPriority={colorsPriority}
             setColorPriority={setColorPriority}
