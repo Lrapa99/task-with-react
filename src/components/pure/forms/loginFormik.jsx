@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import LoadingFormik from "../loadingFormik";
+import { useHistory } from "react-router-dom";
 
 //validaciones del formulario con Yup
 const loginSchema = Yup.object().shape({
@@ -20,6 +21,20 @@ const LoginFormik = () => {
     password: "",
   };
 
+  const history = useHistory();
+
+  const handleOnSubmit = async (values) => {
+    // same shape as initial values
+    await new Promise((r) => setTimeout(r, 2000));
+    // console.log(values);
+    //guardar datos de session en localStorage
+    await localStorage.setItem("credentials", values);
+    //limpiar formulario
+    values.email = "";
+    values.password = "";
+    history.push("/");
+  };
+
   return (
     <div className="text-center">
       <h4>Login Formik</h4>
@@ -29,16 +44,7 @@ const LoginFormik = () => {
         //validaciones de Yup
         validationSchema={loginSchema}
         //onSubmit event
-        onSubmit={async (values) => {
-          // same shape as initial values
-          await new Promise((r) => setTimeout(r, 2000));
-          console.log(values);
-          //guardar datos de session en localStorage
-          localStorage.setItem("credentials", values);
-          //limpiar formulario
-          values.email = "";
-          values.password = "";
-        }}
+        onSubmit={handleOnSubmit}
       >
         {/* recibimos las props de formik */}
         {({ errors, touched, isSubmitting }) => (
@@ -60,6 +66,10 @@ const LoginFormik = () => {
             )}
 
             <button type="submit">Login</button>
+            {/* Btn go to register */}
+            <button type="button" onClick={() => history.push("/register")}>
+              Go to Register
+            </button>
             {/* mostramos contenido miestras se esta enviando */}
             {isSubmitting && <LoadingFormik />}
             {isSubmitting && (

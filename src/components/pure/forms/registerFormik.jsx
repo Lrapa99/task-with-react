@@ -5,8 +5,10 @@ import * as Yup from "yup";
 import { User } from "../../../models/user.class";
 import { ROLES } from "../../../models/roles.enum";
 import LoadingFormik from "../loadingFormik";
+import { useHistory } from "react-router-dom";
 
 const RegisterFormik = () => {
+  const history = useHistory();
   let user = new User();
 
   const initialValues = {
@@ -103,6 +105,10 @@ const RegisterFormik = () => {
             {/* btn Register */}
             <br />
             <button type="submit">Register Account</button>
+            {/* Btn go to login */}
+            <button type="button" onClick={() => history.push("/login")}>
+              Go to Login
+            </button>
             {/* mostramos contenido miestras se esta enviando */}
             {isSubmitting && <LoadingFormik />}
             {isSubmitting && (
