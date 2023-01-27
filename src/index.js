@@ -13,7 +13,8 @@ import AppRoutingFinal from "./AppRoutingFinal";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AppRoutingFinal />
+    <App />
+    {/* <AppRoutingFinal /> */}
   </React.StrictMode>
 );
 
